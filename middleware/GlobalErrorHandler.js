@@ -1,16 +1,8 @@
-const GlobalErrorHandler=(err,req,res,next)=>{
-    //status 
-    //message
-    //stack 
-    //status Code
-    const stack=err.stack;
-    const message=err.message;
-    const status= err.status ? err.status : "failed" 
-    const statusCode= err.statusCode ? err.statusCode  : 500
-    res.status(statusCode).json({
-    status,
-    message,
-    stack
-    })
-    }
-    module.exports=GlobalErrorHandler;
+const { StatusCodes } = require("http-status-codes");
+const GlobalErrorHandler = (err, req, res, next) => {
+  const message = err.message;
+  const statusCode = err.statusCode? err.statusCode: StatusCodes.INTERNAL_SERVER_ERROR;
+  res.status(statusCode).json(message);
+};
+
+module.exports = GlobalErrorHandler;

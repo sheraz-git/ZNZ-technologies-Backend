@@ -1,37 +1,29 @@
 const jwt = require("jsonwebtoken");
+const { StatusCodes } = require("http-status-codes");
 require("dotenv").config();
-const SecretKey = process.env.SECRET_KEY;
-
 const sign = (payload) => {
-  return jwt.sign(payload, SecretKey);
+  return jwt.sign(payload, process.env.SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRY_IN,
+  });
 };
-
 const authenticate = async (req, res, next) => {
   try {
-    let token;
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith("Bearer ")) {
       token = authHeader.substring(7);
     }
     if (!token) {
-      return res.status(401).json({
-        message: "Token not found",
-      });
+      throw new NotFoundError("Token not found");
     }
-    const decoded = jwt.verify(token, SecretKey);
-    
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     // Attach the decoded token payload to the request object for use in routes
     req.decodedToken = decoded;
-
     next();
-  } catch (error) {
-    console.error("Error:", error);
-    return res.status(401).json({
-      message: "Invalid token",
-    });
+  } catch (err) {
+    console.log("---",err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
   }
 };
-
 module.exports = {
   sign,
   authenticate,

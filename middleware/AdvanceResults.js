@@ -8,7 +8,7 @@ const AdvanceResults = (model, populate) => {
     const endIndex = page * limit;
     const totalCounts = await model.count();
 
-    if (req.query.topic) {
+     if (req.query.topic) {
       BlogQuery = BlogQuery.find({
         topic: { $regex: req.query.topic, $options: "i" },
       });

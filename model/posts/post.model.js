@@ -3,23 +3,22 @@ const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema(
   {
     picture: {
-      type: Array,
-      require: true,
+      type: [String],
+      required: false,
     },
     content: {
       type: String,
       required: true,
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    likes:{
-      type: mongoose.Schema.Types.Array,
-      ref: "User",
-      default:[]
-    }
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      }],
   },
   {
     timestamps: true,
@@ -27,4 +26,5 @@ const postSchema = new mongoose.Schema(
 );
 
 const Post = mongoose.model("Post", postSchema);
+
 module.exports = Post;

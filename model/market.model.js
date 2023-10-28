@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const {Discover}=require("../utils/constants");
 const marketSchema = new Schema({  
   market: {
     type: String,
-    enum : ['School','Market'],
+    enum : Object.values(Discover),
     require: true,
   },
 });

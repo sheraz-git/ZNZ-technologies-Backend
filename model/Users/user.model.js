@@ -1,34 +1,8 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
+
 const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    userName: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    password: {
-      type: String,
-      required: true,
-      minLength:6
-    },
-    role: {
-      type: String,
-      default: "user",
-    },
-    status: {
-      type: String,
-      default: "active",
-    },
     profilePicture: {
       type: String,
       required: false,
@@ -39,21 +13,66 @@ const userSchema = new mongoose.Schema(
       required: false,
       default: "",
     },
+    name: {
+      type: String,
+      required: true,
+    },
+    userName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6, 
+    },
+    role: {
+      type: String,
+      default: "user",
+    },
+    status: {
+      type: String,
+      default: "active",
+    },
     fireBaseId: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
-    followers:{
-      type: mongoose.Schema.Types.Array,
-      ref: "User",
-      default:[]  
+    followers: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      default: [],
     },
     following: {
-      type: mongoose.Schema.Types.Array,
-      ref: "User",
-      default:[]  
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      default: [],
     },
+    bio: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    dob: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    language:{
+      type: String,
+      required: false,
+      default: "",
+    },
+    gender:{
+      type: String,
+      required: false,
+      default: "",
+    }
   },
   {
     timestamps: true,
@@ -72,5 +91,5 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-const user = mongoose.model("User", userSchema);
-module.exports = user;
+const User = mongoose.model("User", userSchema); 
+module.exports = User;
