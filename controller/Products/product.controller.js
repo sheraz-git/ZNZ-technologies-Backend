@@ -1,74 +1,70 @@
 const productModel = require("../../model/products/product.model");
+const { StatusCodes } = require("http-status-codes");
+exports.ProductRegisterCtrl = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { picture, productName, description, details, price } = req.body;
+    const newProduct = await productModel.create({
+      productName,
+      picture,
+      description,
+      userId,
+      details,
+      price,
+    });
+    res
+      .status(StatusCodes.CREATED)
+      .json({ message: "Product Added Successfully", data: newProduct });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
-// exports.ProductRegisterCtrl = async (req, res) => {
-//   try {
-//     const { picture,productName, description, seller, details, price } = req.body;
-//     const newProduct = await productModel.create({
-//       productName,
-//       picture,
-//       description,
-//       seller,
-//       details,
-//       price,
-//     });
-//     success("Product Added Successfully", { data: newProduct }, "CREATED", res);
-//   } catch (err) {
-//     error(err.message, "INTERNAL_SERVER_ERROR", res);
-//   }
-// };
+exports.getProductCtrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const uniqueProduct = await productModel.findById(id);
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product fetch Successfully", data: uniqueProduct });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
-// exports.getProfileCtrl = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const product = await productModel.findById(id).populate("user");
-//     product
-//       ? success("Product fetch Successfully", { data: product }, "OK", res)
-//       : error("ProductNotFound", "NOT_FOUND", res);
-//   } catch (err) {
-//     error(err.message, "INTERNAL_SERVER_ERROR", res);
-//   }
-// };
+exports.getAllProductsCtrl = async (req, res) => {
+  try {
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "fetch All Products Successfully", data: res.results });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
-// exports.getAllProductsCtrl = async (req, res) => {
-//   try {
-//     success("fetch All Product Successfully", { data: res.results }, "OK", res);
-//   } catch (err) {
-//     error(err.message, "INTERNAL_SERVER_ERROR", res);
-//   }
-// };
+exports.updateProductInfoCtrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await productModel.findById(id);
+    product.set(req.body);
+    const updatedProduct = await product.save();
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product Update Successfully", data: updatedProduct });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};
 
-// exports.updateProductInfoCtrl = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const product = await productModel.findById(id);
-//     if (product) {
-//       product.set(req.body);
-//       const updatedProduct = await productModel.save();
-//       success(
-//         "Product Update Successfully",
-//         { data: updatedProduct },
-//         "OK",
-//         res
-//       );
-//     } else {
-//       error("ProductNotFound", "NOT_FOUND", res);
-//     }
-//   } catch (err) {
-//     error(err.message, "INTERNAL_SERVER_ERROR", res);
-//   }
-// };
-
-// exports.deleteProductCtrl = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const product = await productModel.findById(id);
-//     if (product) {
-//       await productModel.findByIdAndDelete(product);
-//       success("Product-deleted", { data: "Success" }, "OK", res);
-//     } else {
-//       error("ProductNotFound", "NOT_FOUND", res);
-//     }
-//   } catch (err) {
-//     error(err.message, "INTERNAL_SERVER_ERROR", res);
-//   }
-// };
+exports.deleteProductCtrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await productModel.findById(id);
+    await productModel.findByIdAndDelete(product);
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Product-deleted Successfully", data: "Success" });
+  } catch (err) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+};

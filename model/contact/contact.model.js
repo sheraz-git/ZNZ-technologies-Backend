@@ -14,9 +14,8 @@ const contactSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    users: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    detail: {
+      type: String,
       required: true,
     },
   },
@@ -24,6 +23,5 @@ const contactSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 const contact = mongoose.model("Contact", contactSchema);
 module.exports = contact;

@@ -35,12 +35,7 @@ router.get(
   advanceResults(UserModel),
   getAllUsersCtrl
 );
-router.put(
-  "/updateUserInfoCtrl/:id",
-  validateRegisterInput,
-  authenticate,
-  updateUserInfoCtrl
-);
+router.put("/updateUserInfoCtrl/:id", authenticate, updateUserInfoCtrl);
 router.delete(
   "/deleteUserCtrl/:id",
   authenticate,

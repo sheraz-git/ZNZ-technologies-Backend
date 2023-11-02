@@ -1,13 +1,20 @@
 const express=require("express");
-const Product=require("../../controller/products/product.controller");
+const {
+ProductRegisterCtrl,
+getProductCtrl,
+getAllProductsCtrl,
+updateProductInfoCtrl,
+deleteProductCtrl
+}=require("../../controller/products/product.controller");
 const {authenticate}=require("../../middleware/authentication");
-const AdvanceResults=require("../../middleware/advanceResults");
+const advanceResults=require("../../middleware/advanceResults");
 const ProductModel=require("../../model/products/product.model");
 const router = express.Router();
-// router.post("/ProductRegister",authenticate,Product.ProductRegisterCtrl);
-// router.get("/ProductProfile/:id",authenticate,Product.getProfileCtrl);
-// router.get("/getAllProduct",authenticate,AdvanceResults(ProductModel,"user"),Product.getAllProductsCtrl);
-// router.put("/ProductUpdate/:id",authenticate,Product.updateProductInfoCtrl);
-// router.delete("/deleteProduct/:id",authenticate,Product.deleteProductCtrl);
+
+router.post("/ProductRegister/:userId",authenticate,ProductRegisterCtrl);
+router.get("/getProductCtrl/:id",authenticate,getProductCtrl);
+router.get("/getAllProduct",authenticate,advanceResults(ProductModel,"userId"),getAllProductsCtrl);
+router.put("/updateProductInfoCtrl/:id",authenticate,updateProductInfoCtrl);
+router.delete("/deleteProductCtrl/:id",authenticate,deleteProductCtrl);
 
 module.exports = router;

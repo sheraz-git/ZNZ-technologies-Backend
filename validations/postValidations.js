@@ -3,6 +3,7 @@ const { body, param } = require("express-validator");
 const PostModel = require("../model/posts/post.model");
 const UserModel = require("../model/users/user.model");
 const storiesModel = require("../model/stories/stories.model");
+const commentModel = require("../model/comments/comments.model");
 const {NotFoundError} = require("../helper/customErrors");
 const { withValidationErrors } = require("../middleware/validationMiddleware");
 
@@ -20,7 +21,6 @@ const postValidation = [
       }),
     body("content").notEmpty().withMessage("Content is required"),
   ];
-
 
 const PostIdParamsValidation = [
     param("id").custom(async (value) => {
@@ -47,9 +47,6 @@ const storiesIdParamsValidation = [
   }
 }),
 ];
-
-
-
 const validatePostInput = withValidationErrors(postValidation);
 const validatePostParams = withValidationErrors(PostIdParamsValidation);
 const validateStoriesParams = withValidationErrors(storiesIdParamsValidation);
@@ -57,5 +54,5 @@ const validateStoriesParams = withValidationErrors(storiesIdParamsValidation);
 module.exports = {
   validatePostInput,
   validatePostParams,
-  validateStoriesParams
+  validateStoriesParams,
 };
