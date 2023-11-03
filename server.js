@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
     message: "Z-Rush Worked Successfully",
   });
 });
-
 app.listen(Port, () => {
   console.log(`Z-Rush Worked Fine at ${Port}`);
 });

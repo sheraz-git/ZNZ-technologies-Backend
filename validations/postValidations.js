@@ -6,7 +6,6 @@ const storiesModel = require("../model/stories/stories.model");
 const commentModel = require("../model/comments/comments.model");
 const {NotFoundError} = require("../helper/customErrors");
 const { withValidationErrors } = require("../middleware/validationMiddleware");
-
 const postValidation = [
     param("id")
       .custom(async (value) => {
@@ -50,7 +49,6 @@ const storiesIdParamsValidation = [
 const validatePostInput = withValidationErrors(postValidation);
 const validatePostParams = withValidationErrors(PostIdParamsValidation);
 const validateStoriesParams = withValidationErrors(storiesIdParamsValidation);
-
 module.exports = {
   validatePostInput,
   validatePostParams,

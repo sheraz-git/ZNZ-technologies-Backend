@@ -3,7 +3,6 @@ const { body, param } = require("express-validator");
 const UserModel = require("../model/users/user.model");
 const { NotFoundError, BadRequestError,UnauthorizedError } = require("../helper/customErrors");
 const {withValidationErrors}=require("../middleware/validationMiddleware")
-
 const validateRegisterInput = withValidationErrors([
      body("name").notEmpty().withMessage("Name is required"),
      body("userName")
@@ -30,7 +29,6 @@ const validateRegisterInput = withValidationErrors([
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters"),
   ]);
-  
   const validateLoginInput = withValidationErrors([
       body("password")
         .isLength({ min: 6 })
@@ -52,7 +50,6 @@ const validateRegisterInput = withValidationErrors([
           }
         }),
     ]);
-    
     const validateUserIdParams = withValidationErrors([
       param("id").custom(async (value) => {
         const isValidId = mongoose.Types.ObjectId.isValid(value);
@@ -65,7 +62,6 @@ const validateRegisterInput = withValidationErrors([
         }
       }),
     ]);
-  
   module.exports = {
     validateRegisterInput,
     validateLoginInput,
