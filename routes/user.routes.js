@@ -8,15 +8,15 @@ const {
   updateUserInfoCtrl,
   deleteUserCtrl,
   updateUserStatusCtrl,
-} = require("../../controller/users/user.controller");
-const { authenticate } = require("../../middleware/authentication");
-const advanceResults = require("../../middleware/advanceResults");
-const UserModel = require("../../model/users/user.model");
+} = require("../controller/user.controller");
+const { authenticate } = require("../middleware/authentication");
+const advanceResults = require("../middleware/advanceResults");
+const UserModel = require("../model/user.model");
 const {
   validateUserIdParams,
   validateRegisterInput,
   validateLoginInput,
-} = require("../../validations/userValidations");
+} = require("../validations/userValidations");
 const router = express.Router();
 
 router.post("/userRegister", validateRegisterInput, userRegisterCtrl);

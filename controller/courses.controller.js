@@ -1,5 +1,5 @@
-const coursesModel = require("../../model/courses/Courses.model");
-const cloudinary = require("../../connections/cloudinary");
+const coursesModel = require("../model/courses.model");
+const cloudinary = require("../connections/cloudinary");
 const { StatusCodes } = require("http-status-codes");
 
 exports.uploadVideoCtrl = async (req, res) => {

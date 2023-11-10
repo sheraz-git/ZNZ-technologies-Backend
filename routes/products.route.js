@@ -5,14 +5,14 @@ const {
   getAllProductsCtrl,
   updateProductInfoCtrl,
   deleteProductCtrl,
-} = require("../../controller/products/product.controller");
-const { authenticate } = require("../../middleware/authentication");
+} = require("../controller/product.controller");
+const { authenticate } = require("../middleware/authentication");
 const {
   productValidation,
   productIdValidation,
-} = require("../../validations/productValidations");
-const advanceResults = require("../../middleware/advanceResults");
-const ProductModel = require("../../model/products/product.model");
+} = require("../validations/productValidations");
+const advanceResults = require("../middleware/advanceResults");
+const ProductModel = require("../model/product.model");
 const router = express.Router();
 
 router.post(

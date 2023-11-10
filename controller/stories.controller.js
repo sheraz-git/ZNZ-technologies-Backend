@@ -1,5 +1,5 @@
-const storiesModel = require("../../model/stories/stories.model");
-const cloudinary = require("../../connections/cloudinary");
+const storiesModel = require("../model/stories.model");
+const cloudinary = require("../connections/cloudinary");
 const {StatusCodes}=require("http-status-codes")
 exports.uploadStoriesCtrl = async (req, res) => {
   try {

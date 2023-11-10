@@ -1,4 +1,4 @@
-const shareModel = require("../../model/share/share.model");
+const shareModel = require("../../model/posts/share.model");
 const { StatusCodes } = require("http-status-codes");
 
 exports.sharePostsCtrl = async (req, res) => {

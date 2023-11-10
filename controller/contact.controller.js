@@ -1,4 +1,4 @@
-const contactModel = require("../../model/contact/contact.model");
+const contactModel = require("../model/contact.model");
 const { StatusCodes } = require("http-status-codes");
 
 exports.ContactRegisterCtrl = async (req, res) => {

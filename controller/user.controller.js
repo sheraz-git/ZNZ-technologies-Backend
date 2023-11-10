@@ -1,5 +1,5 @@
-const User = require("../../model/users/user.model");
-const { sign } = require("../../middleware/authentication");
+const User = require("../model/user.model");
+const { sign } = require("../middleware/authentication");
 const { StatusCodes } = require("http-status-codes");
 
 exports.userRegisterCtrl = async (req, res) => {
@@ -25,7 +25,7 @@ exports.userRegisterCtrl = async (req, res) => {
 };
 exports.userLoginCtrl = async (req, res) => {
   try {
-    const { userName, email } = req.body;
+    const { userName, email,password } = req.body;
     const user = await User.findOne({ $or: [{ email }, { userName }] });
     const token = sign({ userId: user._id });
     res

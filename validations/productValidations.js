@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { body, param } = require("express-validator");
-const productModel = require("../model/products/product.model");
+const productModel = require("../model/product.model");
 const { NotFoundError } = require("../helper/customErrors");
 const { withValidationErrors } = require("../middleware/validationMiddleware");
 const validateProductInput = [

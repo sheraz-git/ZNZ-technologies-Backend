@@ -4,11 +4,11 @@ const {
   getStoriesCtrl,
   getAllStoriesCtrl,
   deleteStoriesCtrl,
-} = require("../../controller/stories/stories.controller");
-const { authenticate } = require("../../middleware/authentication");
-const advanceResults = require("../../middleware/advanceResults");
-const { validateStoriesParams } = require("../../validations/postValidations");
-const StoriesModel = require("../../model/stories/stories.model");
+} = require("../controller/stories.controller");
+const { authenticate } = require("../middleware/authentication");
+const advanceResults = require("../middleware/advanceResults");
+const { validateStoriesParams } = require("../validations/postValidations");
+const StoriesModel = require("../model/stories.model");
 const multer = require("multer");
 const storage = multer.diskStorage({
   filename: function (req, file, callback) {

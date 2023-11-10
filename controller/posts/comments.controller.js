@@ -1,4 +1,4 @@
-const commentModel = require("../../model/comments/comments.model");
+const commentModel = require("../../model/posts/comments.model");
 const { StatusCodes } = require("http-status-codes");
 exports.commentRegisterCtrl = async (req, res) => {
   try {

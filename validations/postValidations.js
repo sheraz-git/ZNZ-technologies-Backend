@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const { body, param } = require("express-validator");
 const PostModel = require("../model/posts/post.model");
-const UserModel = require("../model/users/user.model");
-const storiesModel = require("../model/stories/stories.model");
-const commentModel = require("../model/comments/comments.model");
+const UserModel = require("../model/user.model");
+const storiesModel = require("../model/stories.model");
+const commentModel = require("../model/posts/comments.model");
 const {NotFoundError} = require("../helper/customErrors");
 const { withValidationErrors } = require("../middleware/validationMiddleware");
 const postValidation = [

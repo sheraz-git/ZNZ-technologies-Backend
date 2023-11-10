@@ -1,4 +1,4 @@
-const productModel = require("../../model/products/product.model");
+const productModel = require("../model/product.model");
 const { StatusCodes } = require("http-status-codes");
 exports.ProductRegisterCtrl = async (req, res) => {
   try {

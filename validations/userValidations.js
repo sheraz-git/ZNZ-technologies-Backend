@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { body, param } = require("express-validator");
-const UserModel = require("../model/users/user.model");
+const UserModel = require("../model/user.model");
 const { NotFoundError, BadRequestError,UnauthorizedError } = require("../helper/customErrors");
 const {withValidationErrors}=require("../middleware/validationMiddleware")
 const validateRegisterInput = withValidationErrors([

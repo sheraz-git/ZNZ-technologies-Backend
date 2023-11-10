@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { body, param } = require("express-validator");
-const courseModel = require("../model/courses/Courses.model");
+const courseModel = require("../model/courses.model");
 const { NotFoundError} = require("../helper/customErrors");
 const {withValidationErrors}=require("../middleware/validationMiddleware")
 

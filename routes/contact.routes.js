@@ -4,10 +4,10 @@ const {
   getContactCtrl,
   getAllContactCtrl,
   deleteContactCtrl,
-} = require("../../controller/contact/contact.controller");
-const { authenticate } = require("../../middleware/authentication");
-const contactModel = require("../../model/contact/contact.model");
-const advanceResults = require("../../middleware/advanceResults");
+} = require("../controller/contact.controller");
+const { authenticate } = require("../middleware/authentication");
+const contactModel = require("../model/contact.model");
+const advanceResults = require("../middleware/advanceResults");
 const router = express.Router();
 
 router.post("/ContactRegisterCtrl", ContactRegisterCtrl);

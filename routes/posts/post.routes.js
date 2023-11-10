@@ -15,8 +15,8 @@ const {
 } = require("../../validations/postValidations");
 const advanceResults = require("../../middleware/advanceResults");
 const postModel = require("../../model/posts/post.model");
-const marketSeeder = require("../../controller/seeders/MarketSeeder");
-const categorySeeder = require("../../controller/seeders/Categoryseeder");
+const marketSeeder = require("../../controller/seeders/market.seeder");
+const categorySeeder = require("../../controller/seeders/category.seeder");
 const { authenticate } = require("../../middleware/authentication");
 const multer = require("multer");
 const storage = multer.diskStorage({

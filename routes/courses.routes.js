@@ -6,14 +6,14 @@ const {
   updateCoursesInfoCtrl,
   deleteCourseCtrl,
   uploadVideoCtrl,
-} = require("../../controller/courses/Courses.controller");
+} = require("../controller/courses.controller");
 const {
   courseValidate,
   courseValidateParams,
-} = require("../../validations/courseValidations");
-const { authenticate } = require("../../middleware/Authentication");
-const advanceResults = require("../../middleware/AdvanceResults");
-const CoursesModel = require("../../model/courses/Courses.model");
+} = require("../validations/courseValidations");
+const { authenticate } = require("../middleware/Authentication");
+const advanceResults = require("../middleware/AdvanceResults");
+const CoursesModel = require("../model/courses.model");
 const multer = require("multer");
 const storage = multer.diskStorage({
   filename: function (req, file, callback) {

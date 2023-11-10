@@ -1,4 +1,4 @@
-const marketModel = require("../../model/market.model");
+const marketModel = require("../../model/seeders/market.model");
 const csvtojson = require("csvtojson");
 
 exports.MarketSeeder = async function (req, res) {

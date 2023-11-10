@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const {Discover}=require("../utils/constants");
+const {Discover}=require("../../utils/constants");
 const marketSchema = new Schema({  
   market: {
     type: String,

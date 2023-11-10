@@ -1,4 +1,4 @@
-const Category = require("../../model/categories.model");
+const Category = require("../../model/seeders/categories.model");
 const csvtojson = require("csvtojson");
 
 exports.CategorySeeder = async function (req, res) {

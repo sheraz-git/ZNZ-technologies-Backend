@@ -5,11 +5,11 @@ const {
   getAllSharesCtrl,
   deleteShareCtrl,
   getAllPostsOfUserCtrl,
-} = require("../../controller/share/share.controller");
+} = require("../../controller/posts/share.controller");
 const advanceResults = require("../../middleware/advanceResults");
 const { authenticate } = require("../../middleware/authentication");
 const { validatePostParams } = require("../../validations/postValidations");
-const shareModel = require("../../model/share/share.model");
+const shareModel = require("../../model/posts/share.model");
 const router = express.Router();
 
 router.post("/sharePostsCtrl/:shareId", authenticate, sharePostsCtrl);

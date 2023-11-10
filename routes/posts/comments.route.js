@@ -5,10 +5,10 @@ const {
   getAllCommentsCtrl,
   updateCommentInfoCtrl,
   deleteCommentCtrl,
-} = require("../../controller/comments/comments.controller");
+} = require("../../controller/posts/comments.controller");
 const { authenticate } = require("../../middleware/authentication");
 const advanceResults = require("../../middleware/advanceResults");
-const CommentsModel = require("../../model/comments/comments.model");
+const CommentsModel = require("../../model/posts/comments.model");
 const router = express.Router();
 
 router.post("/commentRegisterCtrl/:userId", authenticate,commentRegisterCtrl);
